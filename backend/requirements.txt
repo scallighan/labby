@@ -1,0 +1,10 @@
+fastapi[All]
+msal
+PyJWT
+pydantic-settings
+semantic-kernel==1.5.0
+azure-identity
+azure-mgmt-costmanagement
+azure-mgmt-resource
+msgraph-sdk
+tiktoken

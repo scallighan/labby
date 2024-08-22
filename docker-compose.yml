@@ -1,0 +1,57 @@
+version: '3.9'
+
+services:
+  # db:
+  #   image: postgres
+  #   restart: always
+  #   # set shared memory limit when using docker-compose
+  #   shm_size: 128mb
+  #   volumes:
+  #     - ./postgres:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #   ports:
+  #     - 5432:5432
+
+  backend:
+    build: ./backend
+    ports:
+      - 8080:80
+    environment:
+      GLOBAL_LLM_SERVICE: ${GLOBAL_LLM_SERVICE}
+      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY}
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT}
+      AZURE_OPENAI_CHAT_DEPLOYMENT_NAME: ${AZURE_OPENAI_CHAT_DEPLOYMENT_NAME}
+      AZURE_OPENAI_TEXT_DEPLOYMENT_NAME: ${AZURE_OPENAI_TEXT_DEPLOYMENT_NAME}
+      AZURE_CLIENT_ID: ${AZURE_CLIENT_ID}
+      AZURE_CLIENT_SECRET: ${AZURE_CLIENT_SECRET}
+      AZURE_TENANT_ID: ${AZURE_TENANT_ID}
+      AZURE_SUBSCRIPTION_ID: ${AZURE_SUBSCRIPTION_ID}
+
+  frontend:
+    build: 
+      context: ./frontend
+      args:
+        VITE_CLIENT_ID: ${VITE_CLIENT_ID}
+        VITE_TENANT_ID: ${VITE_TENANT_ID}
+        VITE_BASE_URL: http://localhost:8080
+        VITE_BACKEND_CLIENT_ID: ${VITE_BACKEND_CLIENT_ID}
+    ports:
+      - 5137:80
+    environment:
+      API_ENDPOINT: ${API_ENDPOINT}
+
+  teamsbot:
+    build:
+      context: ./teamsbot
+    ports:
+      - 3978:3978
+    environment:
+      AAD_APP_CLIENT_ID: ${AAD_APP_CLIENT_ID}
+      AAD_APP_CLIENT_SECRET: ${AAD_APP_CLIENT_SECRET}
+      AAD_APP_OAUTH_AUTHORITY_HOST: ${AAD_APP_OAUTH_AUTHORITY_HOST}
+      AAD_APP_TENANT_ID: ${AAD_APP_TENANT_ID}
+      BOT_DOMAIN: ${BOT_DOMAIN}
+      BOT_ID: ${BOT_ID}
+      BOT_PASSWORD: ${BOT_PASSWORD}
+      RUNNING_ON_AZURE: ${RUNNING_ON_AZURE}
