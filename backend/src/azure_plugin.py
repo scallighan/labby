@@ -113,7 +113,7 @@ class AzurePlugin:
         return "\n".join(str_arr)
     
     @kernel_function(description="find the cost views of an Azure resource scope")
-    def get_views_by_scope(self, scope: Annotated[str, "The scope of the Azure resource"]) -> Annotated[str, "Returns the cost views of the Azure resource scope"]:
+    def get_cost_by_scope(self, scope: Annotated[str, "The scope of the Azure resource"]) -> Annotated[str, "Returns the cost views of the Azure resource scope"]:
         print(f"System> I am looking up the cost of the Azure resource scope: {scope}")
         token_credential = DefaultAzureCredential()
         cost_client = CostManagementClient(token_credential)
