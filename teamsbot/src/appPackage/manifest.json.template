@@ -11,9 +11,9 @@
     "developer": {
         "name": "Implodingduck Labs",
         "mpnId": "",
-        "websiteUrl": "https://github.com/implodingduck/labby",
-        "privacyUrl": "https://github.com/implodingduck/labby",
-        "termsOfUseUrl": "https://github.com/implodingduck/labby"
+        "websiteUrl": "https://github.com/scallighan/labby",
+        "privacyUrl": "https://github.com/scallighan/labby",
+        "termsOfUseUrl": "https://github.com/scallighan/labby"
     },
     "description": {
         "short": "Teamsbot that interacts with the Labby API",
