@@ -15,3 +15,6 @@ Then run `./docker-stuff.sh`
 
 ## Deploying
 See terraform directory
+
+## App Registrations
+See terraform directory [appreg.tf](terraform/appreg.tf)

@@ -12,6 +12,10 @@ terraform {
       source = "azure/azapi"
       version = "=1.13.1"
     }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.53.1"
+    }
   }
   backend "azurerm" {
 
@@ -176,7 +180,7 @@ resource "azurerm_container_app" "backend" {
       name                = "http-1"
       concurrent_requests = "100"
     }
-    min_replicas = 1
+    min_replicas = 0
     max_replicas = 1
   }
 
@@ -258,7 +262,7 @@ resource "azurerm_container_app" "frontend" {
       name                = "http-1"
       concurrent_requests = "100"
     }
-    min_replicas = 1
+    min_replicas = 0
     max_replicas = 1
   }
 
@@ -354,7 +358,7 @@ resource "azurerm_container_app" "teamsbot" {
       name                = "http-1"
       concurrent_requests = "100"
     }
-    min_replicas = 1
+    min_replicas = 0
     max_replicas = 1
   }
 
